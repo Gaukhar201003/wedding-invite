@@ -145,9 +145,7 @@
 </head>
 <body>
 
-   <audio id="weddingMusic" loop>
-    <source src="https://files.catbox.moe/uqneb0.mp3" type="audio/mpeg">
-</audio>
+  <audio id="weddingMusic" loop preload="auto"></audio>
 
 
 
@@ -362,7 +360,11 @@
         const musicBtn = document.getElementById("musicBtn");
         let isPlaying = false;
 
-       function togglePlay() {
+      function togglePlay() {
+    if (!music.src) {
+        music.src = "https://files.catbox.moe/uqneb0.mp3";
+    }
+
     if (isPlaying) {
         music.pause();
         musicBtn.classList.remove('playing');
@@ -370,10 +372,10 @@
         music.play().then(() => {
             musicBtn.classList.add('playing');
         }).catch((e) => {
-            console.log("Қате:", e);
             alert("Музыка қосылмады 😢");
         });
     }
+
     isPlaying = !isPlaying;
 }
 

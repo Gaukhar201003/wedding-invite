@@ -116,42 +116,11 @@
             box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
         }
 
-        .music-toggle {
-            position: fixed;
-            bottom: 30px;
-            right: 25px;
-            background: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            z-index: 100;
-            cursor: pointer;
-            border: 1px solid var(--gold-light);
-        }
-
-        .playing i {
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.2); opacity: 0.7; }
-            100% { transform: scale(1); opacity: 1; }
-        }
+        
     </style>
 </head>
 <body>
 
-  <audio id="weddingMusic" loop preload="auto"></audio>
-
-
-
-    <div class="music-toggle" id="musicBtn" onclick="togglePlay()">
-       <i class="fas fa-music text-yellow-500"></i>
-    </div>
 
     <main class="max-w-[480px] mx-auto bg-white shadow-2xl relative min-h-screen">
         
@@ -356,28 +325,7 @@
         setInterval(updateTimer, 1000);
         updateTimer();
 
-        const music = document.getElementById("weddingMusic");
-        const musicBtn = document.getElementById("musicBtn");
-        let isPlaying = false;
-
-      function togglePlay() {
-    if (!music.src) {
-        music.src = "https://files.catbox.moe/uqneb0.mp3";
-    }
-
-    if (isPlaying) {
-        music.pause();
-        musicBtn.classList.remove('playing');
-    } else {
-        music.play().then(() => {
-            musicBtn.classList.add('playing');
-        }).catch((e) => {
-            alert("Музыка қосылмады 😢");
-        });
-    }
-
-    isPlaying = !isPlaying;
-}
+        
 
         function showThankYou() {
             document.getElementById('rsvpForm').classList.add('hidden');

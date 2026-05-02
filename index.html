@@ -362,16 +362,20 @@
         const musicBtn = document.getElementById("musicBtn");
         let isPlaying = false;
 
-        function togglePlay() {
-            if (isPlaying) {
-                music.pause();
-                musicBtn.classList.remove('playing');
-            } else {
-                music.play();
-                musicBtn.classList.add('playing');
-            }
-            isPlaying = !isPlaying;
-        }
+       function togglePlay() {
+    if (isPlaying) {
+        music.pause();
+        musicBtn.classList.remove('playing');
+    } else {
+        music.play().then(() => {
+            musicBtn.classList.add('playing');
+        }).catch((e) => {
+            console.log("Қате:", e);
+            alert("Музыка қосылмады 😢");
+        });
+    }
+    isPlaying = !isPlaying;
+}
 
         function showThankYou() {
             document.getElementById('rsvpForm').classList.add('hidden');

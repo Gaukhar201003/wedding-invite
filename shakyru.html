@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дінмұхаммед & Еркеназ | Үйлену тойы</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@200;300;400;500&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --gold-light: #F4E4BC;
+            --soft-bg: #FFFFFF;
+            --text-main: #4A4A4A;
+            --floral-bg: #FDFBF7;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f0f0f0;
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        .serif { font-family: 'Cormorant Garamond', serif; }
+        .script { font-family: 'Great Vibes', cursive; }
+        .playfair { font-family: 'Playfair Display', serif; }
+
+        .floral-corner {
+            position: absolute;
+            width: 250px;
+            pointer-events: none;
+            opacity: 0.4;
+            z-index: 0;
+        }
+        .top-left { top: 0; left: 0; }
+        .bottom-right { bottom: 0; right: 0; transform: rotate(180deg); }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1.2s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-wrap {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: var(--floral-bg);
+            overflow: hidden;
+        }
+
+        .main-border {
+            border: 1px solid var(--gold);
+            padding: 50px 25px;
+            margin: 20px;
+            text-align: center;
+            width: 100%;
+            max-width: 420px;
+            position: relative;
+            background: white;
+            z-index: 10;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+        }
+
+        .main-border::before {
+            content: '';
+            position: absolute;
+            top: -10px; left: -10px; right: -10px; bottom: -10px;
+            border: 1px solid var(--gold-light);
+            z-index: -1;
+        }
+
+        .date-box {
+            display: inline-block;
+            border-top: 1px solid var(--gold);
+            border-bottom: 1px solid var(--gold);
+            padding: 15px 40px;
+            margin: 20px 0;
+        }
+
+        .restaurant-name {
+            font-size: 3.5rem;
+            color: #2c2c2c;
+            letter-spacing: 4px;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .restaurant-name::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 25%;
+            width: 50%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #D4AF37 0%, #B8962E 100%);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 4px;
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: 0.4s;
+            display: inline-block;
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+            border: none;
+            cursor: pointer;
+        }
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .music-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 25px;
+            background: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            z-index: 100;
+            cursor: pointer;
+            border: 1px solid var(--gold-light);
+        }
+
+        .playing i {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="weddingMusic" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-piano-110169.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="music-toggle" id="musicBtn" onclick="togglePlay()">
+        <i class="fas fa-music text-gold"></i>
+    </div>
+
+    <main class="max-w-[480px] mx-auto bg-white shadow-2xl relative min-h-screen">
+        
+        <!-- Басты бет -->
+        <section class="hero-wrap">
+            <div class="floral-corner top-left">
+                <img src="https://www.transparentpng.com/download/floral/gold-floral-decoration-transparent-6.png" class="w-full h-full object-contain" alt="Decor">
+            </div>
+
+            <div class="main-border reveal active">
+                <p class="serif text-sm tracking-[6px] uppercase text-gray-400 mb-10">Тойға шақыру</p>
+                
+                <h1 class="script text-6xl text-gray-800 mb-2">Дінмұхаммед</h1>
+                <p class="script text-4xl text-gold my-4">&</p>
+                <h1 class="script text-6xl text-gray-800 mb-10">Еркеназ</h1>
+                
+                <div class="date-box">
+                    <p class="playfair text-2xl tracking-[5px] text-gray-800">27.06.2026</p>
+                </div>
+                
+                <p class="serif text-xs tracking-[3px] text-gray-400 mt-8 uppercase italic">Сенбі, сағат 18:00</p>
+            </div>
+
+            <div class="floral-corner bottom-right">
+                <img src="https://www.transparentpng.com/download/floral/gold-floral-decoration-transparent-6.png" class="w-full h-full object-contain" alt="Decor">
+            </div>
+        </section>
+
+        <!-- Мәтін -->
+        <section class="py-24 px-10 text-center bg-white relative overflow-hidden">
+            <div class="reveal">
+                <div class="mb-12">
+                    <i class="fa-solid fa-dove text-gold text-3xl opacity-40"></i>
+                </div>
+                
+                <h2 class="serif text-3xl text-gray-800 mb-10 italic leading-snug">Қадірлі ағайын-туыс,<br>бауырлар, дос-жарандар!</h2>
+                
+                <p class="text-[17px] leading-[1.8] text-gray-600 mb-12 serif italic">
+                    Сіз(дер)ді ұлымыз <span class="text-gray-900 font-bold border-b border-gold/30">Дінмұхаммед</span> пен келініміз <span class="text-gray-900 font-bold border-b border-gold/30">Еркеназдың</span><br>
+                    шаңырақ көтеру тойына арналған<br>
+                    салтанатты ақ дастарханымыздың<br>
+                    қадірлі қонағы болуға шақырамыз.
+                </p>
+
+                <div class="flex justify-center items-center space-x-4 mb-14">
+                    <div class="h-[1px] w-12 bg-gold/30"></div>
+                    <i class="fa-solid fa-heart text-gold/40 text-xs"></i>
+                    <div class="h-[1px] w-12 bg-gold/30"></div>
+                </div>
+
+                <div class="space-y-10">
+                    <div>
+                        <p class="serif text-xs uppercase tracking-[4px] text-gray-400 mb-6 italic">Той иелері:</p>
+                        <p class="serif text-lg text-gray-500 mb-1 italic">Атасы:</p>
+                        <p class="playfair text-3xl text-gray-800 font-medium mb-8">Қалдығұл</p>
+                        
+                        <p class="serif text-lg text-gray-500 mb-1 italic">Ата-анасы:</p>
+                        <p class="playfair text-3xl text-gray-800">Нұрлыбай — Гүлнар</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Таймер -->
+        <section class="py-20 bg-[#FAF7F2] text-center border-y border-gold/10">
+            <div class="reveal">
+                <p class="serif text-sm tracking-[5px] text-gold uppercase mb-10">Салтанатқа дейін:</p>
+                <div class="flex justify-center space-x-8">
+                    <div class="text-center">
+                        <span id="days" class="playfair text-4xl text-gray-800 block">00</span>
+                        <p class="text-[9px] uppercase tracking-widest text-gray-400 mt-2">Күн</p>
+                    </div>
+                    <div class="text-center">
+                        <span id="hours" class="playfair text-4xl text-gray-800 block">00</span>
+                        <p class="text-[9px] uppercase tracking-widest text-gray-400 mt-2">Сағат</p>
+                    </div>
+                    <div class="text-center">
+                        <span id="minutes" class="playfair text-4xl text-gray-800 block">00</span>
+                        <p class="text-[9px] uppercase tracking-widest text-gray-400 mt-2">Минут</p>
+                    </div>
+                    <div class="text-center">
+                        <span id="seconds" class="playfair text-4xl text-gold block">00</span>
+                        <p class="text-[9px] uppercase tracking-widest text-gray-400 mt-2">Секунд</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Мерекелік орын -->
+        <section class="py-24 px-8 text-center bg-white">
+            <div class="reveal">
+                <p class="serif text-xs uppercase tracking-[5px] text-gold mb-12">Той салтанаты өтетін мекен</p>
+                
+                <div class="py-16 px-6 border-x border-gold/20 bg-[#FDFBF7] relative">
+                    <div class="absolute top-4 left-4 w-6 h-6 border-t border-l border-gold"></div>
+                    <div class="absolute bottom-4 right-4 w-6 h-6 border-b border-r border-gold"></div>
+                    
+                    <p class="serif text-lg text-gray-400 italic mb-4">мейрамхана кешені</p>
+                    <h4 class="playfair restaurant-name uppercase font-bold italic">"ДУМАШ"</h4>
+                    
+                    <div class="my-10 space-y-4">
+                        <div class="flex items-center justify-center space-x-3 text-gray-600">
+                            <i class="fa-solid fa-calendar-check text-gold text-sm"></i>
+                            <p class="serif text-xl">27 маусым, 2026 жыл</p>
+                        </div>
+                        <div class="flex items-center justify-center space-x-3 text-gray-600">
+                            <i class="fa-solid fa-clock text-gold text-sm"></i>
+                            <p class="serif text-xl">Сағат 18:00-де басталады</p>
+                        </div>
+                        <div class="flex items-center justify-center space-x-3 text-gray-600 pt-4">
+                            <i class="fa-solid fa-location-dot text-gold text-sm"></i>
+                            <p class="serif text-lg">Ақтөбе қаласы</p>
+                        </div>
+                    </div>
+                    
+                    <a href="https://2gis.kz/aktobe/geo/70000001032596834/57.213825,50.305927" target="_blank" class="btn-gold mt-6">
+                        Картаны ашу
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- RSVP -->
+        <section class="py-24 px-10 bg-[#FAF7F2]">
+            <div class="reveal">
+                <h3 class="serif text-4xl text-center text-gray-800 mb-6 italic">Құрметті қонақ!</h3>
+                <p class="text-center text-[11px] text-gray-400 mb-12 uppercase tracking-[4px]">Сіздің келуіңіз біз үшін маңызды</p>
+
+                <script type="text/javascript">var submitted=false;</script>
+                <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { showThankYou(); }"></iframe>
+
+                <form id="rsvpForm" action="https://docs.google.com/forms/d/e/1FAIpQLSemdpel5iTTYYKBtEVSOP6KaOw-h4pdkZ-cNTTrbZxIPqrfaw/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;" class="space-y-6">
+                    <div>
+                        <p class="text-[10px] uppercase tracking-widest text-gray-400 mb-2">Аты-жөніңіз:</p>
+                        <input type="text" name="entry.169123899" required placeholder="Толық жазыңыз" 
+                               class="w-full bg-white border-b border-gold/30 p-5 text-sm focus:outline-none focus:border-gold transition-colors">
+                    </div>
+
+                    <div class="pt-6 space-y-4">
+                        <p class="text-[10px] uppercase tracking-widest text-gray-400 mb-4 text-center">Құрметті қонақ, тойға келетініңізді нақтылаңыз:</p>
+                        
+                        <div class="grid grid-cols-1 gap-3">
+                            <label class="flex items-center justify-between p-4 bg-white border border-transparent hover:border-gold/30 cursor-pointer transition-all rounded">
+                                <span class="text-xs uppercase tracking-widest text-gray-600">Иә, өзім барамын!</span>
+                                <input type="radio" name="entry.24445892" value="Иә, өзім барамын!" required class="accent-gold h-4 w-4">
+                            </label>
+                            
+                            <label class="flex items-center justify-between p-4 bg-white border border-transparent hover:border-gold/30 cursor-pointer transition-all rounded">
+                                <span class="text-xs uppercase tracking-widest text-gray-600">Жұбайыммен барамын</span>
+                                <input type="radio" name="entry.24445892" value="Жұбайыммен бірге барамын" class="accent-gold h-4 w-4">
+                            </label>
+                            
+                            <label class="flex items-center justify-between p-4 bg-white border border-transparent hover:border-gold/30 cursor-pointer transition-all rounded">
+                                <span class="text-xs uppercase tracking-widest text-gray-600">Өкінішке орай келе алмаймын</span>
+                                <input type="radio" name="entry.24445892" value="Өкінішке орай келе алмаймын" class="accent-gold h-4 w-4">
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full btn-gold py-6 mt-8">Жіберу</button>
+                </form>
+
+                <div id="thankYou" class="hidden text-center py-12">
+                    <i class="fa-solid fa-circle-check text-gold text-4xl mb-6"></i>
+                    <p class="serif text-2xl text-gray-800 italic">Рахмет!</p>
+                    <p class="text-[10px] uppercase tracking-widest text-gray-400 mt-4">Жауабыңыз сәтті жіберілді.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Аяқтау -->
+        <footer class="py-24 text-center bg-white border-t border-gold/10">
+            <div class="reveal">
+                <h4 class="script text-5xl text-gray-800 mb-4">Дінмұхаммед & Еркеназ</h4>
+                <div class="w-12 h-[1px] bg-gold mx-auto my-8"></div>
+                <p class="text-[10px] uppercase tracking-[6px] text-gray-400 italic">Ақ тілекпен күтеміз!</p>
+            </div>
+        </footer>
+
+    </main>
+
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 80) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        window.addEventListener("load", reveal);
+
+        const weddingDate = new Date("June 27, 2026 18:00:00").getTime();
+        function updateTimer() {
+            const now = new Date().getTime();
+            const diff = weddingDate - now;
+            if (diff <= 0) return;
+            
+            document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+            document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
+        }
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        const music = document.getElementById("weddingMusic");
+        const musicBtn = document.getElementById("musicBtn");
+        let isPlaying = false;
+
+        function togglePlay() {
+            if (isPlaying) {
+                music.pause();
+                musicBtn.classList.remove('playing');
+            } else {
+                music.play();
+                musicBtn.classList.add('playing');
+            }
+            isPlaying = !isPlaying;
+        }
+
+        function showThankYou() {
+            document.getElementById('rsvpForm').classList.add('hidden');
+            document.getElementById('thankYou').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
